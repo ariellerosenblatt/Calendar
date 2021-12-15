@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" href="calendar.css">
+<title> Welcome! </title>
+<body>
+    <label id="welcome"> </label>
+    <div class="header">
+        <label> <b> New Users </b> </label>
+    </div>
+    <form method="POST" id="register"> 
+        <div class="input-group">
+            <label>Username</label>
+            <input type="text" name="regusername" id="regusername">
+        </div>
+        <!-- <br></br> -->
+
+        <div class="input-group">
+            <label>Password </label>
+            <input type="password" name="password_1" id="regpw1">
+        </div>
+        <!-- <br></br> -->
+
+        <div class="input-group">
+            <label>Confirm password </label>
+            <input type="password" name="password_2" id="regpw2">
+        </div>
+        <!-- <br></br> -->
+        <div class="input-group">
+            <input type="submit" class="btn" name="reg_user" id="registersubmit">
+        </div>
+       
+
+    </form>
+    <label id="registeroutput"> </label>
+    <!-- </div> -->
+
+    <!-- existing/created user login form  -->
+    <div class="box" style = "position: absolute; top:10px; right: 10px;" >
+        <div class="header">
+            <label> <b> Recently Created Users/Existing Users  </b> </label>
+        </div>
+    
+        <form method="POST" id="login">
+            <div class="input-group">
+                <label>Username      </label>
+                <input type="text" name="loginusername" id="loginusername">
+            </div>
+            <div class="input-group">
+                <label>Password</label>
+                <input type="password" name="loginpassword" id="loginpassword">
+            </div>
+            <div class="input-group">
+                <button type="submit" class="btn" name="login_user" value="login">Login</button>
+            </div>
+                </form>
+                <button id="logout"> Log Out </button>            
+                <p id="loginoutput"> </p>
+    </div>
+            <!-- <div class="FULLCALL" style="width:600px; height:100px; margin:0 auto; text-align:center; vertical-align: text-top;"> -->
+                <div class="titlee"> 
+            <label> Log in first, then click an event in the calendar to delete or edit or add a new event below! </label> 
+            <!-- </div> -->
+             </div>
+             <label id="whatuser"> </label>
+            <div id="FULL" class="FULLCALL" style="width:500px; height:100px; margin:0 auto; text-align:center;">
+            <button id="prevmonth"> Previous Month </button>
+            <!-- need to change January to changing label -->
+            <label id="changemonth"> January </label> 
+            <label id="changeyear"> 2021 </label> 
+
+            <button id="nextmonth"> Next Month </button>
+            
+            <table id="cal2" class="cal2">
+                <thead>
+                <tr>
+                    <th>Sun</th>
+                    <th>Mon</th>
+                    <th>Tue</th>
+                    <th>Wed</th>
+                    <th>Thu</th>
+                    <th>Fri</th>
+                    <th>Sat</th> 
+                </tr>
+                </thead>
+            </table>
+            <table id="cal" class="cal">
+            <thead>
+            <tr>
+                <th>Sun</th>
+                <th>Mon</th>
+                <th>Tue</th>
+                <th>Wed</th>
+                <th>Thu</th>
+                <th>Fri</th>
+                <th>Sat</th> 
+            </tr>
+            </thead>
+        </table>       
+        <label> Color</label><input type="text" id="colorr"> <button id="pickcolor" type="submit"> choose color </button>
+        <div>
+            <label>Change Background To:</label>
+            <button type="button" id="yellow">Yellow</button>
+            <button type="button" id="lime">Lime</button>
+            <button type="button" id="blue">Blue</button>
+            <button type="button" id="pink">Pink</button>
+            <!-- <button type="button" onclick="changeBodyBg('pink');">Pink</button> -->
+            <button type="button" id="purple">Purple</button>
+            <!-- <button type="button" onclick="changeBodyBg('orange');">Orange</button> -->
+        </div>
+        <script>
+
+        function changeBodyBg(color){
+            document.body.style.background = color;
+        }
+        </script>
+        <script>
+
+            function loadTableData(items) {
+              const table = document.getElementById("testBody");
+              items.forEach( item => {
+                // let row = table.insertRow();
+                // let date = row.insertCell(0);
+                // date.innerHTML = item.date;
+                // let name = row.insertCell(1);
+                // name.innerHTML = item.name;
+
+                let row = table.insertRow();
+                let sun = row.insertCell(0);
+                let mon = row.insertCell(1);
+                let tues = row.insertCell(2);
+                let wed = row.insertCell(3);
+                let thurs = row.insertCell(4);
+                let fri = row.insertCell(5);
+                let sat = row.insertCell(6);
+
+                sun.innerHTML = item.sun;
+                mon.innerHTML = item.mon;
+                tues.innerHTML = item.tues;
+                wed.innerHTML = item.wed;
+                thurs.innerHTML = item.thurs;
+                fri.innerHTML = item.fri;
+                sat.innerHTML = item.sat;
+
+
+              });
+            }
+            // loadTableData(items);
+            loadTableData([]);
+            
+          </script>
+    </div>
+
+          <div class="de" id="editeventdiv" style="display: none; text-align: center; border: solid .5px black; background:#add8e6;"> 
+            <!-- <style>
+                div.de{
+                display: none;
+                width:500px;
+                margin:50px;
+                float:right;
+                top:-40px;     
+                }           
+            </style> -->
+            <div class="showing" id="shown" style="display: none; text-align: center; border: solid .5px black; background:lightcyan;">
+            <!-- <label> Event info: </label> -->
+            <b> <label id="eventinfo"> </label></b>
+        </div>
+            <button id="deleteevent"> Delete Event </button> 
+          <label> Event Name: </label> <input type="text" id="editeventname">
+          <label> Share with user? </label> <input type="text" id="editshareduser">
+          <label> Priority </label><select id="editpriority"> 
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+          </select>
+        <input type="datetime-local" id="hiddeninput">
+        <button id="editevent" type="submit"> Edit Event </button>
+        <button id="canceledit"> Cancel </button>
+        <input type="hidden" id="idofevent"> 
+        </div>
+
+        <div class="dee" style="text-align: center; border: solid .5px black;"> 
+        <label id="hideoutput"> </label>
+
+          <label>Pick a date and time</label> 
+          <br> <input type="datetime-local" id="date" name="date"> 
+          <br> <label> Event Name: </label><input type="text" id="event">  
+          <br> <label> Share with user? </label> <input type="text" id="insertshareduser">
+           <!-- <label> Priority </label><select id="editpriority">  -->
+            <br> <label> Priority </label><select id="insertpriority">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+          </select>
+          <button id="addevent" type="submit"> Add Event </button>
+        </div>
+        <div id="weekview">
+            <table id="currweek"> 
+            </table>
+        </div>
+                
+        <label id = "test"> </label>
+
+      
+
+<script src="layout.js"></script>
+</body>
+</html>
